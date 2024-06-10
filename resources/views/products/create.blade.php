@@ -1,5 +1,4 @@
-@extends('layouts.master')
-
+    @extends('layouts.master')
 
 @section('content')
     <!-- Content Wrapper. Contains page content -->
@@ -51,25 +50,42 @@
                             </button>
                         </div>
                     @endif
+                   <!-- {{ $user->id }} -->
 
                     <div class="card card-primary">
                         <div class="card-header">
-                            <h3 class="card-title">Add New Post</h3>
+                            <h3 class="card-title">Add New Product</h3>
                         </div>
-                        <!-- /.card-header -->
+                     <!-- /.card-header -->
                         <!-- form start -->
-                        <form action="{{route('posts.store')}}" method="POST">
+                        <form action="{{route('products.store')}}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="card-body">
+                            <div class="form-group">
+                                    <!-- <label for="exampleInputUser_id">User_id</label> -->
+                                    <input type="hidden" name="user_id" class="form-control" value="{{ $user->id }}">
+                                    
+                                </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">title</label>
                                     <input type="text" name="title" class="form-control">
                                 </div>
                                 <div class="form-group">
-                                    <label for="exampleInputPassword1">body</label>
-                                    <textarea class="form-control" name="body" id="exampleFormControlTextarea1"
-                                              rows="3"></textarea></div>
-                            </div>
+                                    <label for="exampleInputName">Name</label>
+                                    <input type="text" name="name" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputDescription">Description</label>
+                                    <input type="text" name="description" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputPrice">Price</label>
+                                    <input type="text" name="price" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputImage">Image</label>
+                                    <input type="file" name="image" class="form-control">
+                                </div>
                             <!-- /.card-body -->
                             <div class="card-footer">
                                 <button type="submit" class="btn btn-primary">Submit</button>
@@ -87,4 +103,5 @@
     <!-- /.content-wrapper -->
 
 @endsection
+
 

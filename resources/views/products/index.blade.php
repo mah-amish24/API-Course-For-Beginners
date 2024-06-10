@@ -1,7 +1,6 @@
 @extends('layouts.master')
-
 @section('title')
-    MoraSoft | Posts
+    Alyom Host | CMS
 @endsection
 
 @section('content')
@@ -12,7 +11,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Posts</h1>
+                        <h1>Products</h1>
                     </div>
                 </div>
             </div><!-- /.container-fluid -->
@@ -24,7 +23,7 @@
             <!-- Default box -->
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Post List</h3>
+                    <h3 class="card-title">Products List</h3>
                     <div class="card-tools">
                         <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
                             <i class="fas fa-minus"></i>
@@ -46,30 +45,32 @@
                         </div>
                     @endif
 
-                    <a href="{{route('posts.create')}}" class="btn btn-success" role="button" aria-disabled="true">Add Post</a><br><br>
+                    <a href="{{route('products.create')}}" class="btn btn-success" role="button" aria-disabled="true">Add Product</a><br><br>
                     <table id="example1" class="table table-bordered table-striped">
                         <thead>
                         <tr>
                             <th>#</th>
-                            <th>Title</th>
-                            <th>Body</th>
-                            <th>Created_at</th>
+                            <th>name</th>
+                            <th>description</th>
+                            <th>price</th>
+                            <th>Image</th>
                             <th>Processes</th>
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($posts as $post)
+                        @foreach($products as $product)
                             <tr>
                                 <td>{{$loop->iteration}}</td>
-                                <td>{{$post->title}}</td>
-                                <td>{{$post->body}}</td>
-                                <td>{{$post->created_at}}</td>
+                                <td>{{$product->name}}</td>
+                                <td>{{$product->description}}</td>
+                                <td>{{$product->price}}</td>
+                                <td><center><img src="{{ asset('uploads/' . $product->image) }}" alt="{{ $product->name }}" width="70px" height="50px"></center>
                                 <td>
-                                    <a href="{{route('posts.edit',$post->id)}}" class="btn btn-primary btn-sm" role="button" aria-disabled="true">Edit</a>
-                                    <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete_post{{$post->id}}">Delete</button>
+                                    <a href="{{route('products.edit',$product->id)}}" class="btn btn-primary btn-sm" role="button" aria-disabled="true">Edit</a>
+                                    <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete_product{{$product->id}}">Delete</button>
                                 </td>
                             </tr>
-                            @include('posts.destroy')
+                            @include('products.destroy')
                         @endforeach
                     </table>
                 </div>
